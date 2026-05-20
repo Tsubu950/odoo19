@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_smarten" model="ir.ui.view">
+        <field name="name">res.config.settings.form.smarten</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <div class="app_settings_block" name="smarten">
+                    <h2>Smarten AI Settings</h2>
+                    <div class="row mt16">
+                        <div class="col-12 col-lg-6">
+                            <field name="api_key"/>
+                            <field name="auto_close_hours"/>
+                            <field name="duplicate_cooldown_sec"/>
+                            <field name="notify_vip"/>
+                            <field name="notify_blocked"/>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <field name="fcm_api_key"/>
+                            <field name="fcm_sender_id"/>
+                            <field name="telegram_bot_token"/>
+                            <field name="default_telegram_chat_id"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_res_config_settings" model="ir.actions.act_window">
+        <field name="name">Smarten AI Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <!-- target field removed (invalid 'inline') -->
+    </record>
+</odoo>

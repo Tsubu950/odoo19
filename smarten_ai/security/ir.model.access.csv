@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_smarten_attendance_log,smarten.attendance.log,model_smarten_attendance_log,base.group_user,1,1,1,1
+access_smarten_unknown_log,smarten.unknown.log,model_smarten_unknown_log,base.group_user,1,1,1,1
+access_smarten_covered_log,smarten.covered.log,model_smarten_covered_log,base.group_user,1,1,1,1
+access_smarten_vip_log,smarten.vip.log,model_smarten_vip_log,base.group_user,1,1,1,1
+access_smarten_blocked_log,smarten.blocked.log,model_smarten_blocked_log,base.group_user,1,1,1,1
+access_smarten_visitor,smarten.visitor.pre_registration,model_smarten_visitor_pre_registration,base.group_user,1,1,1,1
+access_smarten_visitor_public,smarten.visitor.pre_registration.public,model_smarten_visitor_pre_registration,base.group_public,1,0,1,0
+access_smarten_shift,smarten.shift.schedule,model_smarten_shift_schedule,base.group_user,1,1,1,1
+access_smarten_reid,smarten.reid.embedding,model_smarten_reid_embedding,base.group_user,1,1,1,1
+access_smarten_occupancy,smarten.occupancy.snapshot,model_smarten_occupancy_snapshot,base.group_user,1,1,1,1
+access_smarten_unified,smarten.unified.log,model_smarten_unified_log,base.group_user,1,0,0,0

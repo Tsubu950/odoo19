@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_weekly_attendance" model="smarten.attendance.log" string="Weekly Attendance"
+            report_type="qweb-pdf" name="smarten_ai.weekly_attendance_report"/>
+</odoo>

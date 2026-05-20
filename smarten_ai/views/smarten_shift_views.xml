@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smarten_shift_tree" model="ir.ui.view">
+        <field name="name">smarten.shift.schedule.tree</field>
+        <field name="model">smarten.shift.schedule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="shift_date"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="expected_hours"/>
+                <field name="actual_duration"/>
+                <field name="status" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_smarten_shift_form" model="ir.ui.view">
+        <field name="name">smarten.shift.schedule.form</field>
+        <field name="model">smarten.shift.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="shift_date"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="expected_hours" readonly="1"/>
+                        <field name="attendance_id"/>
+                        <field name="actual_duration"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_smarten_shift_calendar" model="ir.ui.view">
+        <field name="name">smarten.shift.schedule.calendar</field>
+        <field name="model">smarten.shift.schedule</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_time" date_stop="end_time" color="employee_id" string="Shifts">
+                <field name="employee_id"/>
+                <field name="status"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_smarten_shift" model="ir.actions.act_window">
+        <field name="name">Shift Schedules</field>
+        <field name="res_model">smarten.shift.schedule</field>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+</odoo>

@@ -1,0 +1,1 @@
+from . import smarten_report

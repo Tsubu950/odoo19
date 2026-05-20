@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smarten_occupancy_dashboard" model="ir.ui.view">
+        <field name="name">smarten.occupancy.dashboard</field>
+        <field name="model">smarten.occupancy.snapshot</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard" js_class="occupancy_dashboard">
+                <field name="total_occupancy"/>
+                <field name="timestamp"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <i class="fa fa-users" style="font-size: 72px;"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">Current Occupancy</strong>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="total_occupancy"/>
+                                </div>
+                                <small>Last updated: <field name="timestamp"/></small>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_smarten_occupancy_dashboard" model="ir.actions.act_window">
+        <field name="name">Occupancy Dashboard</field>
+        <field name="res_model">smarten.occupancy.snapshot</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_smarten_occupancy_dashboard"/>
+    </record>
+</odoo>

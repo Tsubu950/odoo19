@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_smarten_root" name="Smarten AI" sequence="10" web_icon="base/static/description/icon.png"/>
+
+    <!-- Real‑time Log Feed -->
+    <menuitem id="menu_smarten_realtime" name="Real‑time Log Feed" parent="menu_smarten_root" sequence="5"/>
+    <menuitem id="menu_smarten_realtime_all" name="All Live Events" parent="menu_smarten_realtime" action="action_smarten_unified_log" sequence="10"/>
+
+    <!-- Attendance (single menu, no submenus) -->
+    <menuitem id="menu_smarten_attendance" name="Attendance" parent="menu_smarten_root" action="action_smarten_attendance_log" sequence="10"/>
+
+    <!-- Query submenu -->
+    <menuitem id="menu_smarten_query" name="Query" parent="menu_smarten_root" sequence="20"/>
+    <menuitem id="menu_smarten_vip" name="VIP Logs" parent="menu_smarten_query" action="action_smarten_vip_log" sequence="10"/>
+    <menuitem id="menu_smarten_blocked" name="Blocked Attempts" parent="menu_smarten_query" action="action_smarten_blocked_log" sequence="20"/>
+    <menuitem id="menu_smarten_unknown" name="Unknown Persons" parent="menu_smarten_query" action="action_smarten_unknown_log" sequence="30"/>
+    <menuitem id="menu_smarten_covered" name="Covered Faces" parent="menu_smarten_query" action="action_smarten_covered_log" sequence="40"/>
+
+    <!-- Configuration submenu -->
+    <menuitem id="menu_smarten_config" name="Configuration" parent="menu_smarten_root" sequence="100"/>
+    <menuitem id="menu_smarten_employees" name="Employees" parent="menu_smarten_config" action="action_hr_employee_smarten" sequence="10"/>
+    <menuitem id="menu_smarten_visitors" name="Visitor Pre‑registrations" parent="menu_smarten_config" action="action_smarten_visitor" sequence="20"/>
+    <menuitem id="menu_smarten_shifts" name="Shift Schedules" parent="menu_smarten_config" action="action_smarten_shift" sequence="30"/>
+    <menuitem id="menu_smarten_occupancy" name="Occupancy Dashboard" parent="menu_smarten_config" action="action_smarten_occupancy_dashboard" sequence="40"/>
+    <menuitem id="menu_smarten_reid" name="ReID Embeddings" parent="menu_smarten_config" action="action_smarten_reid" sequence="50"/>
+    <menuitem id="menu_smarten_settings" name="Settings" parent="menu_smarten_config" action="action_res_config_settings" sequence="100"/>
+</odoo>

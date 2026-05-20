@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_smarten_blocked_log_list" model="ir.ui.view">
+        <field name="name">smarten.blocked.log.list</field>
+        <field name="model">smarten.blocked.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="timestamp"/>
+                <field name="employee_id"/>
+                <field name="direction" widget="badge"/>
+                <field name="camera_source"/>
+                <field name="entry_time"/>
+                <field name="exit_time"/>
+                <field name="alert_sent" widget="boolean_toggle"/>
+                <field name="photo" widget="image"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_smarten_blocked_log" model="ir.actions.act_window">
+        <field name="name">Blocked Attempts</field>
+        <field name="res_model">smarten.blocked.log</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

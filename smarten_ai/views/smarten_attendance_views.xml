@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_smarten_attendance_log_list" model="ir.ui.view">
+        <field name="name">smarten.attendance.log.list</field>
+        <field name="model">smarten.attendance.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="entry_time"/>
+                <field name="exit_time"/>
+                <field name="person_id"/>
+                <field name="direction" widget="badge"/>
+                <field name="camera_source"/>
+                <field name="duration" widget="float_time"/>
+                <field name="liveness_score" widget="progressbar"/>
+                <field name="person_type"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_smarten_attendance_log_kanban" model="ir.ui.view">
+        <field name="name">smarten.attendance.log.kanban</field>
+        <field name="model">smarten.attendance.log</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('hr.employee', 'image_128', record.person_id.raw_value)" alt="Photo"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong><field name="person_id"/></strong>
+                                <div><field name="direction"/></div>
+                                <div><field name="entry_time"/></div>
+                                <div><field name="person_type"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_smarten_attendance_log_pivot" model="ir.ui.view">
+        <field name="name">smarten.attendance.log.pivot</field>
+        <field name="model">smarten.attendance.log</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="person_type" type="row"/>
+                <field name="entry_time" interval="month" type="col"/>
+                <field name="duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_smarten_attendance_log_graph" model="ir.ui.view">
+        <field name="name">smarten.attendance.log.graph</field>
+        <field name="model">smarten.attendance.log</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="entry_time" interval="day"/>
+                <field name="person_type"/>
+                <field name="duration"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_smarten_attendance_log_calendar" model="ir.ui.view">
+        <field name="name">smarten.attendance.log.calendar</field>
+        <field name="model">smarten.attendance.log</field>
+        <field name="arch" type="xml">
+            <calendar date_start="entry_time" date_stop="exit_time" color="person_type">
+                <field name="person_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Main Action (without gantt) -->
+    <record id="action_smarten_attendance_log" model="ir.actions.act_window">
+        <field name="name">All Attendance Logs</field>
+        <field name="res_model">smarten.attendance.log</field>
+        <field name="view_mode">list,kanban,pivot,graph,calendar</field>
+    </record>
+</odoo>

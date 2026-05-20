@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree / List View (no photo) -->
+    <record id="view_smarten_unified_log_tree" model="ir.ui.view">
+        <field name="name">smarten.unified.log.tree</field>
+        <field name="model">smarten.unified.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="timestamp"/>
+                <field name="person_name"/>
+                <field name="category" widget="badge"/>
+                <field name="direction" widget="badge"/>
+                <field name="camera_source"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View (no photo) -->
+    <record id="view_smarten_unified_log_kanban" model="ir.ui.view">
+        <field name="name">smarten.unified.log.kanban</field>
+        <field name="model">smarten.unified.log</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <div class="o_kanban_image">
+                                <i class="fa fa-user-circle" style="font-size: 48px;"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong><field name="person_name"/></strong>
+                                <div><field name="category" widget="badge"/></div>
+                                <div><field name="direction" widget="badge"/></div>
+                                <div><field name="timestamp"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_smarten_unified_log_pivot" model="ir.ui.view">
+        <field name="name">smarten.unified.log.pivot</field>
+        <field name="model">smarten.unified.log</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="category" type="row"/>
+                <field name="direction" type="col"/>
+                <field name="duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View (corrected: removed :day, use interval) -->
+    <record id="view_smarten_unified_log_graph" model="ir.ui.view">
+        <field name="name">smarten.unified.log.graph</field>
+        <field name="model">smarten.unified.log</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="timestamp" interval="day"/>
+                <field name="category"/>
+                <field name="duration"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_smarten_unified_log_calendar" model="ir.ui.view">
+        <field name="name">smarten.unified.log.calendar</field>
+        <field name="model">smarten.unified.log</field>
+        <field name="arch" type="xml">
+            <calendar date_start="timestamp" color="category">
+                <field name="person_name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_smarten_unified_log" model="ir.actions.act_window">
+        <field name="name">Unified Live Log</field>
+        <field name="res_model">smarten.unified.log</field>
+        <field name="view_mode">list,kanban,pivot,graph,calendar</field>
+    </record>
+</odoo>

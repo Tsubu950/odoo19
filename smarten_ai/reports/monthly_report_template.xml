@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="monthly_attendance_report">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Monthly Attendance Summary</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Month</th>
+                            <th>Total Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><t t-esc="doc.person_id.name"/></td>
+                                <td><t t-esc="doc.entry_time.strftime('%B %Y')"/></td>
+                                <td><t t-esc="doc.duration"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
