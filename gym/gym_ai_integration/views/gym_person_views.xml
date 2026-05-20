@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_gym_person_list" model="ir.ui.view">
+        <field name="name">gym.person.list</field>
+        <field name="model">gym.person</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="image" widget="image" string="Photo"/>
+                <field name="name"/>
+                <field name="role"/>
+                <field name="rfid_tag"/>
+                <field name="total_visits"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_gym_person_form" model="ir.ui.view">
+        <field name="name">gym.person.form</field>
+        <field name="model">gym.person</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="role"/>
+                            <field name="rfid_tag"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="face_encoding"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Attendance">
+                            <field name="attendance_ids">
+                                <list>
+                                    <field name="timestamp"/>
+                                    <field name="direction"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_person" model="ir.actions.act_window">
+        <field name="name">Members &amp; Staff</field>
+        <field name="res_model">gym.person</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

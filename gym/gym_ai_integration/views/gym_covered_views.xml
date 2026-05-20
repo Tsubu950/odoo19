@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_gym_covered_log_list" model="ir.ui.view">
+        <field name="name">gym.covered.log.list</field>
+        <field name="model">gym.covered.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="timestamp"/>
+                <field name="tracking_id"/>
+                <field name="gender"/>
+                <field name="age_range"/>
+                <field name="camera_source"/>
+                <field name="is_suspicious"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_gym_covered_log_form" model="ir.ui.view">
+        <field name="name">gym.covered.log.form</field>
+        <field name="model">gym.covered.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="tracking_id"/>
+                            <field name="gender"/>
+                            <field name="age_range"/>
+                            <field name="camera_source"/>
+                            <field name="reason"/>
+                            <field name="timestamp"/>
+                            <field name="is_suspicious"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image"/>
+                            <field name="video_clip"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gym_covered_log" model="ir.actions.act_window">
+        <field name="name">Covered Face Events</field>
+        <field name="res_model">gym.covered.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

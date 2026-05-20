@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_gym_attendance_log_list" model="ir.ui.view">
+        <field name="name">gym.attendance.log.list</field>
+        <field name="model">gym.attendance.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="timestamp"/>
+                <field name="person_id"/>
+                <field name="direction"/>
+                <field name="camera_source"/>
+                <field name="person_type"/>
+                <field name="duration"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_gym_attendance_log" model="ir.actions.act_window">
+        <field name="name">Attendance Logs</field>
+        <field name="res_model">gym.attendance.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

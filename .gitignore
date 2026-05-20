@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*~
+__pycache__/
+.data/
+odoo.log
+*.conf
+.vscode/
+.idea/
+odoo/
+venv/
+

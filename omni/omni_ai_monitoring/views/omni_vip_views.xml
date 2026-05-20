@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_omni_vip_log_list" model="ir.ui.view">
+        <field name="name">omni.vip.log.list</field>
+        <field name="model">omni.vip.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="entry_time"/>
+                <field name="exit_time"/>
+                <field name="employee_id"/>
+                <field name="direction"/>
+                <field name="camera_source"/>
+                <field name="duration" widget="float_time"/>
+                <field name="gender"/>
+                <field name="age_range"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_omni_vip_log" model="ir.actions.act_window">
+        <field name="name">VIP Logs</field>
+        <field name="res_model">omni.vip.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

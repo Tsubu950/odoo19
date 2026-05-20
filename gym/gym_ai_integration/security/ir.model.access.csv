@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gym_person_user,gym.person.user,model_gym_person,base.group_user,1,1,1,1
+access_gym_attendance_user,gym.attendance.log.user,model_gym_attendance_log,base.group_user,1,1,1,1
+access_gym_guest_user,gym.guest.log.user,model_gym_guest_log,base.group_user,1,1,1,1
+access_gym_covered_user,gym.covered.log.user,model_gym_covered_log,base.group_user,1,1,1,1
+access_gym_analytics_user,gym.analytics.user,model_gym_analytics,base.group_user,1,0,0,0

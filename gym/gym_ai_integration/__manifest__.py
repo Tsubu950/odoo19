@@ -1,0 +1,23 @@
+{
+    'name': 'Gym & Night Club AI Integration',
+    'version': '1.0',
+    'category': 'Operations/Gym',
+    'summary': 'AI-Powered Facial Recognition Entry/Exit System count with time and date capture unknown person',
+    'description': 'Production-ready module for tracking gym visits using computer vision.',
+    'author': 'Senior Systems Architect',
+    'depends': ['base', 'web'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'views/gym_person_views.xml',
+        'views/gym_attendance_views.xml',
+        'views/gym_guest_views.xml',
+        'views/gym_covered_views.xml',
+        'views/gym_analytics_views.xml',
+        'views/menu_views.xml',
+        #'data/cron_jobs.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

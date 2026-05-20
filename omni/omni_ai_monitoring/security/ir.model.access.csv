@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_omni_vip_log,omni.vip.log,model_omni_vip_log,base.group_user,1,1,1,1
+access_omni_blocked_log,omni.blocked.log,model_omni_blocked_log,base.group_user,1,1,1,1
+access_omni_unknown_log,omni.unknown.log,model_omni_unknown_log,base.group_user,1,1,1,1
+access_omni_covered_log,omni.covered.log,model_omni_covered_log,base.group_user,1,1,1,1

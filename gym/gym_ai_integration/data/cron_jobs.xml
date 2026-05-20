@@ -1,0 +1,7 @@
+cat > /home/tsumsuv/odoo/custom-addons/gym_ai_integration/data/cron_jobs.xml << 'EOF'
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    </data>
+</odoo>
+EOF

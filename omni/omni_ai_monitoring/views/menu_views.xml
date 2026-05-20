@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_omni_root" name="Omni AI" sequence="10"/>
+
+    <menuitem id="menu_omni_attendance" name="Attendance" parent="menu_omni_root" sequence="10"/>
+    <menuitem id="menu_omni_vip" name="VIP Logs" parent="menu_omni_attendance" action="action_omni_vip_log" sequence="10"/>
+    <menuitem id="menu_omni_blocked" name="Blocked Attempts" parent="menu_omni_attendance" action="action_omni_blocked_log" sequence="20"/>
+    <menuitem id="menu_omni_unknown" name="Unknown Persons" parent="menu_omni_attendance" action="action_omni_unknown_log" sequence="30"/>
+    <menuitem id="menu_omni_covered" name="Covered Faces" parent="menu_omni_attendance" action="action_omni_covered_log" sequence="40"/>
+
+    <menuitem id="menu_omni_config" name="Configuration" parent="menu_omni_root" sequence="100"/>
+    <menuitem id="menu_omni_employees" name="Employees" parent="menu_omni_config" action="hr.open_view_employee_list" sequence="10"/>
+</odoo>

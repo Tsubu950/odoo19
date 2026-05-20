@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_omni_blocked_log_list" model="ir.ui.view">
+        <field name="name">omni.blocked.log.list</field>
+        <field name="model">omni.blocked.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="entry_time"/>
+                <field name="exit_time"/>
+                <field name="employee_id"/>
+                <field name="direction"/>
+                <field name="camera_source"/>
+                <field name="duration" widget="float_time"/>
+                <field name="alert_sent"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_omni_blocked_log" model="ir.actions.act_window">
+        <field name="name">Blocked Person Attempts</field>
+        <field name="res_model">omni.blocked.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

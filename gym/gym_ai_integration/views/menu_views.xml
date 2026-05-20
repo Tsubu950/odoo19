@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_gym_root" name="Gym AI" sequence="10"/>
+    <menuitem id="menu_gym_attendance" name="Attendance" parent="menu_gym_root" sequence="10"/>
+    <menuitem id="menu_gym_member_attendance" name="Member Logs" parent="menu_gym_attendance" action="action_gym_attendance_log" sequence="10"/>
+    <menuitem id="menu_gym_guest_logs" name="Guest Logs" parent="menu_gym_attendance" action="action_gym_guest_log" sequence="20"/>
+    <menuitem id="menu_gym_covered_logs" name="Covered Face Events" parent="menu_gym_attendance" action="action_gym_covered_log" sequence="30"/>
+    <menuitem id="menu_gym_config" name="Configuration" parent="menu_gym_root" sequence="100"/>
+    <menuitem id="menu_gym_persons" name="Members &amp; Staff" parent="menu_gym_config" action="action_gym_person" sequence="10"/>
+    <menuitem id="menu_gym_analytics" name="Analytics" parent="menu_gym_root" action="action_gym_analytics" sequence="200"/>
+</odoo>

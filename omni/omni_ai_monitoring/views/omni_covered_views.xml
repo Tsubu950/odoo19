@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_omni_covered_log_list" model="ir.ui.view">
+        <field name="name">omni.covered.log.list</field>
+        <field name="model">omni.covered.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="entry_time"/>
+                <field name="exit_time"/>
+                <field name="tracking_id"/>
+                <field name="direction"/>
+                <field name="camera_source"/>
+                <field name="duration" widget="float_time"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_omni_covered_log" model="ir.actions.act_window">
+        <field name="name">Covered Faces</field>
+        <field name="res_model">omni.covered.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
