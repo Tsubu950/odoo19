@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="model_smarten_attendance_processor" model="ir.model">
+            <field name="name">smarten.attendance.processor</field>
+            <field name="model">smarten.attendance.processor</field>
+        </record>
+         <!-- Process daily attendance -->
+        <record id="ir_cron_process_attendance" model="ir.cron">
+            <field name="name">Smarten AI: Process Daily Attendance</field>
+            <field name="model_id" ref="model_smarten_attendance_processor"/>
+            <field name="state">code</field>
+            <field name="code">model.process_daily_attendance()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+        </record>
+
+        <record id="cron_auto_close" model="ir.cron">
+            <field name="name">Auto‑close stale attendance sessions</field>
+            <field name="model_id" ref="model_smarten_attendance_log"/>
+            <field name="state">code</field>
+            <field name="code">self.env['smarten.attendance.log'].auto_close_stale_sessions()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+        </record>
+         <!-- Define the ir.model record for the raw log model -->
+        <record id="model_smarten_raw_log" model="ir.model">
+            <field name="name">smarten.raw.log</field>
+            <field name="model">smarten.raw.log</field>
+        </record>
+
+    <!-- Cron job to clean up raw feed logs older than 1 day -->
+        <record id="ir_cron_cleanup_raw_logs" model="ir.cron">
+            <field name="name">Smarten AI: Clean up raw feed logs older than 1 day</field>
+            <field name="model_id" ref="model_smarten_raw_log"/>
+            <field name="state">code</field>
+            <field name="code">model.action_cleanup_raw_logs()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+        </record>
+
+        <record id="cron_weekly_report" model="ir.cron">
+            <field name="name">Send weekly attendance report</field>
+            <field name="model_id" ref="model_smarten_attendance_log"/>
+            <field name="state">code</field>
+            <field name="code">self.env['smarten.attendance.log'].generate_weekly_report()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+        </record>
+
+        <record id="cron_monthly_report" model="ir.cron">
+            <field name="name">Send monthly attendance report</field>
+            <field name="model_id" ref="model_smarten_attendance_log"/>
+            <field name="state">code</field>
+            <field name="code">self.env['smarten.attendance.log'].generate_monthly_report()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+        </record>
+    </data>
+</odoo>

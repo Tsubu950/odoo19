@@ -15,23 +15,25 @@
         </field>
     </record>
 
-    <!-- Kanban View (no photo) -->
+    <!-- Kanban View for Unified Log -->
     <record id="view_smarten_unified_log_kanban" model="ir.ui.view">
         <field name="name">smarten.unified.log.kanban</field>
         <field name="model">smarten.unified.log</field>
         <field name="arch" type="xml">
             <kanban>
+                <field name="id"/>
+                <field name="person_name"/>
+                <field name="direction"/>
+                <field name="entry_time"/>
                 <templates>
-                    <t t-name="kanban-box">
-                        <div class="o_kanban_record">
-                            <div class="o_kanban_image">
-                                <i class="fa fa-user-circle" style="font-size: 48px;"/>
-                            </div>
-                            <div class="oe_kanban_details">
-                                <strong><field name="person_name"/></strong>
-                                <div><field name="category" widget="badge"/></div>
-                                <div><field name="direction" widget="badge"/></div>
-                                <div><field name="timestamp"/></div>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <div class="oe_kanban_content">
+                                <strong><t t-esc="record.person_name.raw_value"/></strong>
+                                <br/>
+                                <t t-esc="record.direction.raw_value"/>
+                                <br/>
+                                <small><t t-esc="record.entry_time.raw_value"/></small>
                             </div>
                         </div>
                     </t>
@@ -39,7 +41,6 @@
             </kanban>
         </field>
     </record>
-
     <!-- Pivot View -->
     <record id="view_smarten_unified_log_pivot" model="ir.ui.view">
         <field name="name">smarten.unified.log.pivot</field>

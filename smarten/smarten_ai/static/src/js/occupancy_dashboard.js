@@ -1,7 +1,6 @@
 odoo.define('smarten_ai.occupancy_dashboard', function (require) {
     "use strict";
     var KanbanView = require('web.KanbanView');
-    var viewRegistry = require('web.view_registry');
 
     var OccupancyKanban = KanbanView.extend({
         init: function () {
@@ -16,5 +15,6 @@ odoo.define('smarten_ai.occupancy_dashboard', function (require) {
             this._super.apply(this, arguments);
         }
     });
-    viewRegistry.add('occupancy_dashboard', OccupancyKanban);
+
+    // Do NOT add to viewRegistry – js_class="occupancy_dashboard" in XML handles it
 });

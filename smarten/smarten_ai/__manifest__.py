@@ -35,16 +35,17 @@
         'views/smarten_occupancy_dashboard.xml',
         'views/smarten_reid_views.xml',
         'views/res_config_settings_views.xml',
+        'views/smarten_raw_views.xml',
         'views/menu_views.xml',
         'report/weekly_report_data.xml',
         'report/monthly_report_data.xml',
-        'report/weekly_report_template.xml',    # <-- MOVED HERE
-        'report/monthly_report_template.xml',   # <-- MOVED HERE
+        'report/weekly_report_template.xml',
+        'report/monthly_report_template.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'smarten_ai/static/src/js/occupancy_dashboard.js',
-            # 'smarten_ai/views/portal_templates.xml',   # keep commented (optional)
+            #'smarten_ai/static/src/js/smarten_raw_kanban.js',
         ],
     },
     'installable': True,

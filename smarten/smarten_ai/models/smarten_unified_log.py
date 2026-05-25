@@ -6,8 +6,8 @@ class SmartenUnifiedLog(models.Model):
     _auto = False
     _rec_name = 'person_name'
 
-    # Define all fields (id is a plain Integer)
-    id = fields.Integer(string='ID', readonly=True)
+    # Primary key MUST be fields.Id
+    id = fields.Id(string='ID', readonly=True)
     person_name = fields.Char()
     category = fields.Selection([
         ('employee', 'Employee'),

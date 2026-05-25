@@ -8,14 +8,37 @@ _logger = logging.getLogger(__name__)
 
 class SmartenAIController(http.Controller):
 
+    @http.route('/api/smarten/raw', type='json', auth='public', methods=['POST'], csrf=False)
+    def receive_raw_feed(self, **payload):
+        # Use the same Authorization header as monitor endpoint
+        api_key = request.httprequest.headers.get('Authorization')
+        expected_key = request.env['ir.config_parameter'].sudo().get_param(
+            'smarten_ai.api_key', '4f1520fde3b8c25717d5341abaa0d9a7d6995918'
+        )
+        if api_key != f"Bearer {expected_key}":
+            return {'status': 'error', 'message': 'Invalid API key'}
+
+        raw_log = request.env['smarten.raw.log'].sudo().create({
+            'track_id': payload.get('track_id'),
+            'camera_id': payload.get('camera_id'),
+            'snapshot': payload.get('snapshot'),
+            'age': payload.get('age'),
+            'gender': payload.get('gender'),
+            'bbox': payload.get('bbox'),
+        })
+        _logger.info(f"Raw log created: track_id={raw_log.track_id}, id={raw_log.id}")
+        return {'status': 'ok', 'log_id': raw_log.id}
+
     @http.route('/api/smarten/monitor', type='json', auth='none', methods=['POST'], csrf=False)
     def monitor(self):
         api_key = request.httprequest.headers.get('Authorization')
-        expected_key = request.env['ir.config_parameter'].sudo().get_param('smarten_ai.api_key', 'b7b52ab57c4838241cc2ca7d8c3d8715fe41dcdc')
+        expected_key = request.env['ir.config_parameter'].sudo().get_param(
+            'smarten_ai.api_key', '4f1520fde3b8c25717d5341abaa0d9a7d6995918'
+        )
         if api_key != f"Bearer {expected_key}":
             return {'status': 'unauthorized'}
 
-        data = request.jsonrequest
+        data = request.get_json_data()
         if not data:
             return {'status': 'error', 'message': 'No JSON data'}
 
@@ -43,6 +66,7 @@ class SmartenAIController(http.Controller):
                 return {'status': 'error', 'message': f'Employee "{person_name}" not found'}
 
             # Check last attendance for cooldown
+            # Cooldown (prevent duplicate events within seconds)
             last_att = request.env['smarten.attendance.log'].sudo().search([
                 ('person_id', '=', employee.id),
                 ('direction', '=', direction),
@@ -51,12 +75,33 @@ class SmartenAIController(http.Controller):
             if last_att:
                 return {'status': 'ignored_cooldown'}
 
-            # Create attendance record in hr.attendance
-            att = request.env['hr.attendance'].sudo().create({
-                'employee_id': employee.id,
-                'check_in': timestamp if direction == 'IN' else False,
-                'check_out': timestamp if direction == 'OUT' else False,
-            })
+                        # --- Handle hr.attendance properly ---
+            Attendance = request.env['hr.attendance'].sudo()
+            open_att = Attendance.search([
+                ('employee_id', '=', employee.id),
+                ('check_out', '=', False)
+            ], limit=1, order='check_in DESC')
+
+            if direction == 'IN':
+                # Close any still‑open attendance before creating a new one
+                if open_att:
+                    open_att.write({'check_out': timestamp})
+                # Create a fresh check‑in
+                att = Attendance.create({
+                    'employee_id': employee.id,
+                    'check_in': timestamp,
+                })
+            else:   # direction == 'OUT'
+                if open_att:
+                    # Close the open attendance
+                    open_att.write({'check_out': timestamp})
+                else:
+                    # If no open attendance exists, create a pair (this is unusual but safe)
+                    att = Attendance.create({
+                        'employee_id': employee.id,
+                        'check_in': timestamp,
+                        'check_out': timestamp,
+                    })
             # Store additional data in custom log
             log_vals = {
                 'person_id': employee.id,
@@ -69,7 +114,7 @@ class SmartenAIController(http.Controller):
                 'reid_embedding': reid_embedding,
                 'photo': image_b64,
             }
-            log = request.env['smarten.attendance.log'].sudo().create(log_vals)
+            request.env['smarten.attendance.log'].sudo().create(log_vals)
 
             # Handle VIP / Blocked alerts
             if employee.is_vip and direction == 'IN':

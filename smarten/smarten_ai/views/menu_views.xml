@@ -2,10 +2,14 @@
 <odoo>
     <menuitem id="menu_smarten_root" name="Smarten AI" sequence="10" web_icon="base/static/description/icon.png"/>
 
-    <!-- Real‑time Log Feed -->
+    <!-- Parent menu for Real‑time Log Feed -->
     <menuitem id="menu_smarten_realtime" name="Real‑time Log Feed" parent="menu_smarten_root" sequence="5"/>
-    <menuitem id="menu_smarten_realtime_all" name="All Live Events" parent="menu_smarten_realtime" action="action_smarten_unified_log" sequence="10"/>
-
+    <!-- Real‑time Log Feed -->
+    <menuitem id="menu_smarten_realtime_raw" 
+          name="All Live Events (Raw)" 
+          parent="menu_smarten_realtime" 
+          action="action_smarten_raw_log" 
+          sequence="10"/>
     <!-- Attendance (single menu, no submenus) -->
     <menuitem id="menu_smarten_attendance" name="Attendance" parent="menu_smarten_root" action="action_smarten_attendance_log" sequence="10"/>
 

@@ -10,3 +10,5 @@ from . import smarten_reid_embedding
 from . import smarten_occupancy_snapshot
 from . import smarten_unified_log
 from . import res_config_settings
+from . import smarten_raw_log
+from . import smarten_attendance_processor

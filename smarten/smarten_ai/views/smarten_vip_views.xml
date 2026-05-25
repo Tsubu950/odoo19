@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_smarten_vip_log_list" model="ir.ui.view">
+        <field name="name">smarten.vip.log.list</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="entry_time"/>
+                <field name="employee_id"/>
+                <field name="direction" widget="badge"/>
+                <field name="camera_source"/>
+                <field name="gender"/>
+                <field name="age_range"/>
+                <field name="photo"/>   <!-- no widget in list -->
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View (CORRECTED) -->
+    <record id="view_smarten_vip_log_kanban" model="ir.ui.view">
+        <field name="name">smarten.vip.log.kanban</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="employee_id"/>
+                <field name="entry_time"/>
+                <field name="photo"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card">
+                            <t t-if="record.photo.raw_value">
+                                <img t-attf-src="data:image/jpeg;base64,#{record.photo.raw_value}" alt="Snapshot" style="width:100%; height: auto;"/>
+                            </t>
+                            <div class="oe_kanban_content">
+                                <strong>VIP <t t-esc="record.employee_id.raw_value"/></strong>
+                                <br/>
+                                <small><t t-esc="record.entry_time.raw_value"/></small>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_smarten_vip_log_form" model="ir.ui.view">
+        <field name="name">smarten.vip.log.form</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="employee_id"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="entry_time"/>
+                            <field name="direction"/>
+                            <field name="camera_source"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="age_range"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="photo" widget="image" class="oe_avatar"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_smarten_vip_log_pivot" model="ir.ui.view">
+        <field name="name">smarten.vip.log.pivot</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="employee_id" type="row"/>
+                <field name="entry_time" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_smarten_vip_log_graph" model="ir.ui.view">
+        <field name="name">smarten.vip.log.graph</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="entry_time" interval="day"/>
+                <field name="employee_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_smarten_vip_log_calendar" model="ir.ui.view">
+        <field name="name">smarten.vip.log.calendar</field>
+        <field name="model">smarten.vip.log</field>
+        <field name="arch" type="xml">
+            <calendar date_start="entry_time" color="employee_id">
+                <field name="employee_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_smarten_vip_log" model="ir.actions.act_window">
+        <field name="name">VIP Logs</field>
+        <field name="res_model">smarten.vip.log</field>
+        <field name="view_mode">list,kanban,form,pivot,graph,calendar</field>
+    </record>
+</odoo>

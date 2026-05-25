@@ -10,3 +10,4 @@ access_smarten_shift,smarten.shift.schedule,model_smarten_shift_schedule,base.gr
 access_smarten_reid,smarten.reid.embedding,model_smarten_reid_embedding,base.group_user,1,1,1,1
 access_smarten_occupancy,smarten.occupancy.snapshot,model_smarten_occupancy_snapshot,base.group_user,1,1,1,1
 access_smarten_unified,smarten.unified.log,model_smarten_unified_log,base.group_user,1,0,0,0
+access_smarten_raw_log,smarten.raw.log,model_smarten_raw_log,base.group_user,1,1,1,1
